@@ -7,3 +7,4 @@
 3. In your R project, open the a3_task2_firstname_lastname.Rmd
 4. Rename it to have your first & last name
 5. Follow along with the instructions in the .Rmd to learn some new & very useful data wrangling tools
+6. Once you're done, stage, commit & push changes back to your GitHub repo! 
