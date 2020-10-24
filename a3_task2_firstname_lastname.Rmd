@@ -283,8 +283,10 @@ Once you've completed the above:
 - Knit your .Rmd
 - Go to the Git tab in RStudio
 - Stage all updated files (click box under 'Staged')
-- Press Commit, add commit message
-- 
+- Press Commit, add commit message, click Commit
+- Click the blue (down arrow) button to "Pull" (should say already up to date)
+- Click the green (up arrow) button to "Push"
+- Once it's done, go back to the forked repo in your GitHub account, refresh, and ensure that your updates have been recorded & safely stored.
 
 
 ## END TASK 2!
