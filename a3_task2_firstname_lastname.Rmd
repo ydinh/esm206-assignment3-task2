@@ -137,19 +137,23 @@ The [`lubridate`](https://lubridate.tidyverse.org/) R package contains "function
 
 #### 3A. Follow me
 
-Run the code below to see how the `lubridate::ymd()` function (and variants) can convert a number to a date. **NOTE**: I use `ymd()` because the order of the elements is in *Year* - *Month* - *Day*. 
+Run the code below to see how the `lubridate::ymd()` function (and variants) can recognize and convert dates in various forms into a class ("Date") that R understands. **NOTE**: I use `ymd()` here because the order of the elements is in *Year* - *Month* - *Day*. 
 
 ```{r}
-# Run this code: 
+# Run the following lines of code, which contain dates in order of Year-Month-Day in different formats: 
 
 ymd(20201118)
+
+ymd("2020-11-18")
+
+ymd("2020/11/18")
 
 # See what shows up below? This in date format (year - month - day)
 ```
 
 #### 3A. On your own
 
-In the code chunk below, use `ymd()` to convert "19010316" to a date: 
+In the code chunk below, use `ymd()` to convert a date that you choose in `YYYY-MM-DD`, `YYYY/MM/DD` and `YYYYMMDD` form to a Date class: 
 
 ```{r}
 # Your code here: 
