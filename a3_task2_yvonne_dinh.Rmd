@@ -57,8 +57,13 @@ Make sure to `View()` the resulting data frame (remember: run `View()` in the Co
 
 ```{r}
 # Your code here: 
+sw_split_name <- starwars %>% # Start with starwars
+  separate(col = name, # Separate the hair_color column...
+           into = c("name_1","name_2"), # Into two columns 'name_1' & 'name_2'
+           sep = "-" # Separate at the first dash
+  )
 
-
+#the third name in row #49 gets dropped because R only recognized the first dash
 ```
 
 #### 1B. Follow me
@@ -91,7 +96,12 @@ Make sure to `View()` the resulting data frame (remember: run `View()` in the Co
 
 ```{r}
 # Your code here:
-
+sw_skin_sep <- starwars %>% # Start from starwars data
+  separate(col = skin_color, # Separate the `skin_color` column
+           into = c("skin_1","skin_2"), # Into two columns
+           sep = ",", # Creating the separation at the first *comma*
+           extra = "merge", # If additional spaces, merge all into second column
+           remove = FALSE) # And *do not* remove the original column
 
 ```
 
@@ -113,7 +123,7 @@ Check the output after running the code.
 mpg_make_model <- mpg %>% # Start with mpg
   unite(col = make_model, # Create a new column called 'make_model'
         c(manufacturer, model), # That combines the manufacturer & model column
-        sep = "HEY!" # Puts "HEY!" between the pieces (default is underscore)
+        sep = " :-) " # Puts "HEY!" between the pieces (default is underscore)
         ) 
 
 # Feel free to try different separators in the `sep = ""` argument above.
@@ -127,7 +137,12 @@ In the code chunk below, starting from the `mpg` data create a new data frame ca
 
 ```{r}
 # Your code here: 
-
+mpg_model_class <- mpg %>% # Start with mpg
+  unite(col = model_class, # Create a new column called 'model_class'
+        c(model, class), # That combines the model & class column
+        sep = "-",# separate by dash
+        remove = FALSE #keep original column
+        ) 
 
 ```
 
@@ -157,7 +172,11 @@ In the code chunk below, use `ymd()` to convert a date that you choose in `YYYY-
 
 ```{r}
 # Your code here: 
+ymd(19771228)
 
+ymd("1997-12-28")
+
+ymd("1997/12/28")
 
 ```
 
@@ -182,7 +201,9 @@ In the code chunk below, create a vector (using `c()`, as above) stored as `some
 
 ```{r}
 # Your code here: 
-
+some_dates <- c(11061972, 02142007,01301843)
+some_dates_converted <- mdy(some_dates) # Converts to Date, month day year
+some_dates_converted #check it out!
 
 ```
 
@@ -226,8 +247,17 @@ Starting from the `lakers` dataset, create a new dataset called `gasol_hookshots
 
 ```{r}
 # Your code here: 
+gasol_hookshots=lakers %>% 
+  filter(player=="Pau Gasol") %>% #keep pau gasol data
+  filter(type=="hook") %>% #keep hookshot data 
+  mutate(new_date=ymd(date)) %>%  #update date column
+  mutate(new_month=month(new_date)) #create a new column that holds dates
 
-
+#Find the *number* of Gasol's hook shots recorded (not necessarily scored) by **month** (hint: `count(month)`) for the 2008 - 2009 season
+#i used the length function, count wasn't working for me....
+hookshots_by_month=gasol_hookshots %>% 
+  group_by(new_month) %>% 
+  summarize(total_shots=length(new_month))
 ```
 
 ### 4. `dplyr::case_when()`
@@ -276,7 +306,12 @@ Note: If you add another condition within `case_when()` that is `TRUE ~ "some th
 
 ```{r}
 # Your code here: 
-
+storms_danger <- storms %>% # Start from storms data
+  mutate(danger = case_when( # Add a new column season, which contains... 
+    status=="hurricane" ~ "high",
+    TRUE ~ "moderate" #set all other statuses to equal 'moderate' danger
+  )
+  )
 
 ```
 
